@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test task for GRAND CAPITAL</title>
+</head>
+<body>
+
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Добавить задачу" />
+</form>
+
+<hr>
+
+{% for quest in object_list %}
+    <li>
+        <form action="{% url "del_quest" pk=quest.pk %}" method="get">
+            <input type="submit" value="Снять задачу" />
+            # {{ quest.pk }} : {{ quest.title }} : {{ quest.abstract }}
+        </form>
+    </li>
+{% empty %}
+    <li>Задачи отсутствуют.</li>
+{% endfor %}
+
+</body>
+</html>
